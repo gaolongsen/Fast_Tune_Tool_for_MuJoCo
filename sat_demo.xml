@@ -1,0 +1,278 @@
+<mujoco model="service_spacecraft_env">
+  <compiler angle="radian" meshdir="meshes" balanceinertia="true"/>
+  <option gravity="0 0 0" noslip_iterations="5"/>
+
+  <default>
+    <default class="ur5e">
+      <material specular="0.5" shininess="0.25"/>
+      <joint axis="0 1 0" range="-6.28319 6.28319" armature="0.1"/>
+      <default class="size3">
+        <default class="size3_limited">
+          <joint range="-3.1415 3.1415" damping="10"/>
+        </default>
+      </default>
+      <default class="size1">
+      </default>
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="collision">
+        <geom type="capsule" group="3"/>
+        <default class="eef_collision">
+          <geom type="cylinder"/>
+        </default>
+      </default>
+      <site size="0.001" rgba="0.5 0.5 0.5 0.3" group="4"/>
+    </default>
+        <default class="x_s_axis">
+            <geom contype="0" conaffinity="0" group="1" rgba="1 0 0 1"
+                  type="cylinder" size=".005 0.05" pos="0.05 0 0" euler="0 1.570796327 0"/>
+        </default>
+        <default class="y_s_axis">
+            <geom contype="0" conaffinity="0" group="1" rgba="0 1 0 1"
+                  type="cylinder" size=".005 0.05" pos="0 0.05 0" euler="1.570796327 0 0"/>
+        </default>
+        <default class="z_s_axis">
+            <geom contype="0" conaffinity="0" group="1" rgba="0 0 1 1"
+                  type="cylinder" size=".005 0.05" pos="0 0 0.05" euler="0 0 0"/>
+        </default>
+        <default class="x_axis">
+            <geom contype="0" conaffinity="0" group="1" rgba="1 0 0 1"
+                  type="cylinder" size=".01 0.15" pos="0.15 0 0" euler="0 1.570796327 0"/>
+        </default>
+        <default class="y_axis">
+            <geom contype="0" conaffinity="0" group="1" rgba="0 1 0 1"
+                  type="cylinder" size=".01 0.15" pos="0 0.15 0" euler="1.570796327 0 0"/>
+        </default>
+        <default class="z_axis">
+            <geom contype="0" conaffinity="0" group="1" rgba="0 0 1 1"
+                  type="cylinder" size=".01 0.15" pos="0 0 0.15" euler="0 0 0"/>
+        </default>
+    <default class="2f85">
+      <mesh scale="0.001 0.001 0.001"/>
+      <general biastype="affine"/>
+
+      <joint axis="1 0 0"/>
+      <default class="driver">
+        <joint range="0 0.8" armature="0.005" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="follower">
+        <joint range="-0.872664 0.872664" pos="0 -0.018 0.0065" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="spring_link">
+        <joint range="-0.29670597283 0.8" stiffness="0.05" springref="2.62" damping="0.00125"/>
+      </default>
+      <default class="coupler">
+        <joint range="-1.57 0" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+
+      <default class="vis85">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+      <default class="col85">
+        <geom type="mesh" group="3"/>
+        <default class="pad_box1">
+          <geom mass="0" type="box" pos="0 -0.0026 0.028125" size="0.011 0.004 0.009375" friction="0.7"
+            solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.55 0.55 0.55 1"/>
+        </default>
+        <default class="pad_box2">
+          <geom mass="0" type="box" pos="0 -0.0026 0.009375" size="0.011 0.004 0.009375" friction="0.6"
+            solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.45 0.45 0.45 1"/>
+        </default>
+      </default>
+    </default>
+  </default>
+
+    <custom>
+        <numeric name="START_ANGLES" data="0 0 0 0 0 0 1.0811 -1.8654 2.316251 -1.6364 1.57 2.3076"/>
+        <text name="google_id" data="1SjWRUl-D1FZ5fB2cy4jF4X9wTsQ5LWzo"/>
+    </custom>
+
+  <asset>
+    <material class="ur5e" name="black" rgba="0.033 0.033 0.033 1"/>
+    <material class="ur5e" name="jointgray" rgba="0.278 0.278 0.278 1"/>
+    <material class="ur5e" name="linkgray" rgba="0.82 0.82 0.82 1"/>
+    <material class="ur5e" name="urblue" rgba="0.49 0.678 0.8 1"/>
+
+    <mesh class="2f85" file="85_base_mount.stl"/>
+    <mesh class="2f85" file="85_base.stl"/>
+    <mesh class="2f85" file="85_driver.stl"/>
+    <mesh class="2f85" file="85_coupler.stl"/>
+    <mesh class="2f85" file="85_follower.stl"/>
+    <mesh class="2f85" file="85_pad.stl"/>
+    <mesh class="2f85" file="85_silicone_pad.stl"/>
+    <mesh class="2f85" file="85_spring_link.stl"/>
+
+    <mesh file="Station.STL" scale="0.02 0.02 0.02"/>
+    <mesh file="tugnew3.STL" scale="0.005 0.005 0.005"/>
+
+    <mesh file="base_0.stl"/>
+    <mesh file="base_1.stl"/>
+    <mesh file="shoulder_0.stl"/>
+    <mesh file="shoulder_1.stl"/>
+    <mesh file="shoulder_2.stl"/>
+    <mesh file="upperarm_0.stl"/>
+    <mesh file="upperarm_1.stl"/>
+    <mesh file="upperarm_2.stl"/>
+    <mesh file="upperarm_3.stl"/>
+    <mesh file="forearm_0.stl"/>
+    <mesh file="forearm_1.stl"/>
+    <mesh file="forearm_2.stl"/>
+    <mesh file="forearm_3.stl"/>
+    <mesh file="wrist1_0.stl"/>
+    <mesh file="wrist1_1.stl"/>
+    <mesh file="wrist1_2.stl"/>
+    <mesh file="wrist2_0.stl"/>
+    <mesh file="wrist2_1.stl"/>
+    <mesh file="wrist2_2.stl"/>
+    <mesh file="wrist3.stl"/>
+
+    <mesh file="Base_WAM.STL"/>
+    <mesh file="New_Track.STL"/>
+    <mesh file="europa-203a1.STL"/>
+    <mesh file="stone.stl"/>
+
+        <!-- [OBJ] Hinge system -->
+        <mesh file="base_link.STL" />
+        <mesh file="hinge_link.STL" />
+        <mesh file="hinge_link_large.stl" />
+        <mesh file="stick_Link.STL" />
+        <mesh file="base_link_large_v2.STL" scale="0.00185 0.00185 0.00185"/>
+        <mesh file="rotor3.stl" scale="0.0019 0.0019 0.0019"/>
+        <mesh file="new_sate_1_2.STL" scale="0.25 0.25 0.25" />
+
+
+        <mesh name="robotiq_85_base_link_coarse" file="robotiq_85_base_link_coarse.STL" />
+        <mesh name="inner_knuckle_coarse" file="inner_knuckle_coarse.STL" />
+        <mesh name="inner_finger_coarse" file="inner_finger_coarse.STL" />
+        <mesh name="outer_knuckle_coarse" file="outer_knuckle_coarse.STL" />
+        <mesh name="outer_finger_coarse" file="outer_finger_coarse.STL" />
+
+        <mesh file="kinova_robotiq_coupler.stl" />
+        <mesh file="robotiq_85_base_link.stl" />
+        <mesh file="robotiq_85_finger_link.stl" />
+        <mesh file="robotiq_85_finger_tip_link.stl" />
+        <mesh file="robotiq_85_inner_knuckle_link.stl" />
+        <mesh file="robotiq_85_knuckle_link.stl" />
+
+
+        <!--<texture name="floor_tile" file="meshes/floor_tile.png" width="3000" height="3000" type="2d"/>
+        <material name="tile" texture="floor_tile" specular="0" shininess="0" reflectance="0" emission="1" />-->
+        <texture name="floor_tile" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+        <material name="matplane" reflectance="0.3" texture="floor_tile" texrepeat="1 1" texuniform="true"/>
+        <material name="silver" specular="1" shininess="0.5" reflectance="1" emission="0.25" rgba="0.82 0.82 0.82 1"/>
+        <material name="grey" specular="1" shininess="0.5" reflectance="1" emission="0.1" rgba="0.5 0.5 0.5 1"/>
+        <material name="gray" rgba="0.4627 0.4627 0.4627 1"/>
+        <material name="silicone" rgba="0.1882 0.1882 0.1882 1"/>
+        <material name="blue" specular="1" shininess="0.5" reflectance="1" emission="0" rgba="0.678 0.847 0.902 1"/>
+        <material name="GriMat" specular="0.9" shininess="0.5" reflectance="0" rgba="0.1 0.1 0.1 1" emission="0.1" />
+        <material name="Light" specular="0" shininess="0.6" reflectance="0.9" rgba="0.5 0.5 1 1" emission="0.7" />
+        <material name="BasketMat" specular="0" shininess="0" reflectance="0" rgba="0.26 0.16 0.16796875 1" emission="0" />
+        <texture file="meshes/wood.png" name="hinge-wood"/>
+        <material name="wood" reflectance="0.7" texrepeat="5 5" texture="hinge-wood" texuniform="true"/>
+  </asset>
+
+  <worldbody>
+
+        <!--<geom name="floor_grey_tile" pos="0 0 -0.75" size="5 2 .25" type="plane" material="tile"/>-->
+        <geom name="floor_grey_tile" pos="0 0 -1.75" size="5 2 .25" type="plane" material="matplane" condim="3" solref="-16000 -200"/>
+
+        
+
+        <light directional="true" pos="-0.5 0.5 3" dir="0 0 -1" />
+
+<!--         <body name="service_module" pos="0.4 -0.1 -0.1" euler="-1.57 -0.1 0">
+            <joint type="free" name="fly-joint"/> 
+            <inertial pos="-0.08071720 0.01017671 0.07995294" mass="9.97059584" diaginertia="0.11760385 0.10916849 0.18294303" /> 
+            <geom type="mesh" mesh="Station" rgba="1 0 0 1"/>
+        </body> 
+ -->
+
+
+        <body pos="1.9116 -0.864 1.091" name="satellite" euler="-0.7 0.0 0">
+           <!--<geom type="mesh" rgba="1 0.65 0 1" mesh="satellite02_largeh" mass="2" contype="8" conaffinity="8"/>-->
+            <joint name="free_flyer" type="free"/>
+            <inertial pos="-0.05 -0.142 0.15" euler="0 0 1.57" mass="10.455183" diaginertia="0.2 0.6 0.6"/>
+            <body pos="0.25 0.02 0.01" name="Hinge" euler="0 0 1.57">
+                <geom type="mesh" rgba="0.871 0.788 0.137 1" mesh="base_link_large_v2" euler="1.57 0 0" pos="-0.092 0.078 0.02" mass="2" contype="8" conaffinity="8"/>
+                <geom type="mesh" rgba="0.78 0.78 0.741 1" mesh="rotor3" mass="1.2" euler="1.57 0 0" pos="0.011 0.037 0.06" contype="8" conaffinity="8"/>
+                <geom type="mesh" rgba="0.871 0.788 0.137 1" mesh="new_sate_1_2" mass="2" euler="-1.57 0 0" pos="-0.5 0.04 0.4" contype="8" conaffinity="8"/>
+                <inertial pos="0.09 -0.042 0.15" quat="1 0 0 0" mass="1.455183" diaginertia="0.004 0.004 0.001"/>
+                <body name="hinge_link" pos="0.124528 -0.079 0.023241" quat="0 1 0 0" >
+                    <inertial pos="0.12 0.12 -0.029845" quat="0.924 0 0 0.383" mass="0.455183" diaginertia="0.0001 0.004 0.004"/>
+                    <joint name="hinge_joint" pos="-0.033 -0.036 0" axis="0 0 1" type="hinge" springdamper="0.4 0.8" range="-0.9 2" limited="true"/> <!--springdamper="0.4 0.8"-->
+                    <!--<geom name="ref_line" pos="-0.033 -0.036 0" type="cylinder" rgba="0 0 1 1" contype="0" size="0.001 2  " conaffinity="0"/>--> <!--This line is used for adjusted for the revolute joint of the hybrid hinge system-->
+                    <geom name="rod_holder" pos="0.0 0 0" quat="0 1 0 0" type="mesh" contype="0" rgba="1 0 0.12 1" mesh="hinge_link_large" conaffinity="0"/>
+                    <body name="solarp" pos="0.270528 0.3227781 -0.05" quat="0.924 0 0 -0.383">
+                        <geom name="solarp" pos="0.037 0.15 0" quat="1 0 0 0" size="0.009 0.5 0.15" type="box" rgba="0.3922 0.5843 0.9294 1" contype="8" conaffinity="8"/>
+                        <body name="ur_grasp_point" pos="0.037 0.05 0.14" euler="-1.57 0 0">
+                            <geom name="gsp_p_point" pos="0 0.0 0" quat="1 0 0 0" size="0.05 0.01 0.01" type="box" rgba="1 0 0 0" contype="8" conaffinity="8"/> <!--For UR5e robot arm-->
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+
+        <body name="endeff_des" pos="0 0 0" mocap="true">
+            <geom type="sphere" size="0.015" rgba="1 0 0 1" />
+            <geom class="x_s_axis"/>
+            <geom class="y_s_axis"/>
+            <geom class="z_s_axis"/>
+        </body>
+
+
+
+  </worldbody>
+
+  <contact>
+<!--     <exclude body1="base" body2="left_driver_85"/>
+    <exclude body1="base" body2="right_driver_85"/>
+    <exclude body1="base" body2="left_spring_link_85"/>
+    <exclude body1="base" body2="right_spring_link_85"/>
+    <exclude body1="right_coupler_85" body2="right_follower_85"/>
+    <exclude body1="left_coupler_85" body2="left_follower_85"/> -->
+  </contact>
+
+  <tendon>
+<!--     <fixed name="split_85">
+      <joint joint="right_driver_joint_85" coef="0.5"/>
+      <joint joint="left_driver_joint_85" coef="0.5"/>
+    </fixed> -->
+  </tendon>
+
+  <equality>
+<!--     <connect anchor="0 0 0" body1="right_follower_85" body2="right_coupler_85" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+    <connect anchor="0 0 0" body1="left_follower_85" body2="left_coupler_85" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+    <joint joint1="right_driver_joint_85" joint2="left_driver_joint_85" polycoef="0 1 0 0 0" solimp="0.95 0.99 0.001"
+      solref="0.005 1"/>
+    <weld name="fixer" solimp="0.0 0.0 1" solref="0.01" body1="EE" body2="ur_grasp_point" torquescale="1" relpose="0 0 0 1 0 0 0" anchor="0 0 0" active="false"/>
+ -->
+  </equality>
+
+  <actuator>
+<!--     <general class="size3" name="base_roll_act" joint="joint0_roll"/>
+    <general class="size3" name="base_pitch_act" joint="joint0_pitch"/>
+    <general class="size3" name="base_yaw_act" joint="joint0_yaw"/>
+    <general class="size3" name="base_z_act" joint="joint0_z"/>
+    <general class="size3" name="base_y_act" joint="joint0_y"/>
+    <general class="size3" name="base_x_act" joint="joint0_x"/>
+    <general class="size3" name="shoulder_pan" joint="joint0"/>
+    <general class="size3" name="shoulder_lift" joint="joint1"/>
+    <general class="size3_limited" name="elbow" joint="joint2"/>
+    <general class="size1" name="wrist_1" joint="joint3"/>
+    <general class="size1" name="wrist_2" joint="joint4"/>
+    <general class="size1" name="wrist_3" joint="joint5"/>  
+  <general class="2f85" name="fingers_actuator" tendon="split_85" forcerange="-5 5" ctrlrange="0 255"
+      gainprm="0.3137255 0 0" biasprm="0 -100 -10"/>   -->
+  </actuator>
+
+  <sensor>
+      <!--Define 6-axis Torque/Force sensor for WAM-->
+<!--       <torque name="wrist_UR5_torque" site="wrist_UR5_torque_7" />
+      <force name="wrist_UR5_force" site="wrist_UR5_force_7"/> -->
+  </sensor>
+
+  <!--<keyframe>
+    <key name="home" qpos="-1.5708 -1.5708 1.5708 -1.5708 -1.5708 0" ctrl="-1.5708 -1.5708 1.5708 -1.5708 -1.5708 0"/>
+  </keyframe>-->
+</mujoco>
